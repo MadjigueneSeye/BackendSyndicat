@@ -1,7 +1,6 @@
 package com.syndicat.gestionsyndicatback.Services;
 import com.syndicat.gestionsyndicatback.Entity.Personne;
 import com.syndicat.gestionsyndicatback.Repository.PersonneRepository;
-import com.syndicat.gestionsyndicatback.Repository.PersonneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +12,12 @@ public class PersonneService {
     private PersonneRepository personneRepository;
 
 public void ajouterPersonne (Personne personne) {
+
     if(validerPersonne(personne)) {
     personneRepository.save(personne);
+
     }
+
 }
 public void updatePersonne (Personne personne){
     if(!personneRepository.existsById(personne.getMatricule())){
@@ -24,7 +26,7 @@ public void updatePersonne (Personne personne){
 personneRepository.save(personne);
 }
 
-public void supprimerPersonne(String idpers){
+public void supprimerPersonne(Long idpers){
 personneRepository.deleteById(idpers);
 }
     public List<Personne> getAllPersonne() {
@@ -35,8 +37,9 @@ public boolean validerPersonne (Personne personne){
 
     return personne != null &&
             personne.getMatricule() != null &&
-            !personne.getMatricule().isEmpty() &&
+
             !personneRepository.existsById(personne.getMatricule());
 }
+
 
 }

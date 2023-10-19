@@ -4,7 +4,7 @@ import com.syndicat.gestionsyndicatback.Entity.Personne;
 import com.syndicat.gestionsyndicatback.Entity.Personne;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PersonneRepository extends JpaRepository<Personne, String> {
-
+public interface PersonneRepository extends JpaRepository<Personne, Long> {
+    Personne findByUsername(String username);
 }
 
